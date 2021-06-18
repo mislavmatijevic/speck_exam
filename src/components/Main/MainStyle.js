@@ -8,11 +8,12 @@ export const MainContent = styled.div`
     margin-left: auto;
     margin-right: auto;
 
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: 1024px) {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 2;
-        gap: 10px;
+        gap: 20px;
+        padding: 0 32px;
     }
 `;
 

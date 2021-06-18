@@ -14,10 +14,10 @@ export const StudentCardWrapper = styled.div`
 
     max-width: 200px;
     @media screen and (min-width: 500px) {
-        max-width: 300px;
+        max-width: 275px;
     }
     @media screen and (min-width: 800px) {
-        max-width: 350px;
+        max-width: 300px;
     }
 `;
 
