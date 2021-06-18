@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react'
 import './App.css';
+import { MainContent, Header } from './components/Main/MainStyle';
+import StudentCard from './components/StudentCard/StudentCard';
 
 function App() {
+
+  const [students, setStudents] = useState(null)
+
+  useEffect(() => {
+    fetch("https://speck-events-api.herokuapp.com/api/user")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setStudents(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setStudents(null);
+        }
+      )
+  }, [])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header>Speck Academy 2021</Header>
+      <MainContent>
+        {students?.length > 0 &&
+          students.map(value => {
+            return (<StudentCard key={value.id} {...value} />);
+          })}
+      </MainContent>
+    </>
   );
 }
 
